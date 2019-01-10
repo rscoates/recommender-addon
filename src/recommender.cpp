@@ -162,7 +162,7 @@ double Recommender::getGlobalBaselineRatingPrediction(vector<vector<double>> &ra
 	double itemMeanRating = Utils::getColMean(ratings, colIndex);
 
 	double result = fabs(meanRating + (itemMeanRating - meanRating) + (userMeanRating - meanRating));
-	if (std::isnan(result)) return 0;
+	if (::isnan(result)) return 0;
 	return result;
 }
 
@@ -193,7 +193,7 @@ vector<pair<int, double>> Recommender::getTopCFRecommendations(vector<vector<dou
 		}
 
 		double predictedRating = ratingsSum / similaritiesSum;
-		if (!std::isnan(predictedRating)) recommendations.push_back(make_pair(i, predictedRating));
+		if (!::isnan(predictedRating)) recommendations.push_back(make_pair(i, predictedRating));
 	}
 
 	int recommendationsSize = recommendations.size();
